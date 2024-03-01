@@ -1,11 +1,26 @@
-function phone(){
-    fetch('https://openapi.programming-hero.com/api/phones?search=iphone')
+function loadPhone(searchText){
+    fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
     .then(res => res.json())
     .then(data => displayPhone(data.data))
 }
 
 function displayPhone(data){
     const phoneContainer = document.getElementById('phone-container')
+    //clear data
+    phoneContainer.textContent ='';
+
+    const showContainer =document.getElementById('show-all-container')
+    //display show all button if result>12
+    if(data.length>12){
+        showContainer.classList.remove('hidden');
+    }
+    else{
+        showContainer.classList.add('hidden');
+    }
+
+    //display limited phones
+    data = data.slice(0,12);
+
     for(phone of data){
         console.log(phone);
         const divPhone = document.createElement('div')
@@ -14,8 +29,7 @@ function displayPhone(data){
         <figure><img src="${phone.image}" alt="Shoes" /></figure>
         <div class="card-body">
             <h2 class="card-title">${phone.phone_name}</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div class="card-actions justify-end">
+            <p>"slug${phone.slug}"</p>
             <button class="btn btn-primary">Buy Now</button>
             </div>
         </div>
@@ -23,4 +37,11 @@ function displayPhone(data){
         phoneContainer.appendChild(divPhone);
     }
 }
-phone();
+
+//Handle Search
+function searchHandle(){
+    const searchInput = document.getElementById('search-feild');
+    const searchText = searchInput.value;
+    loadPhone(searchText);
+}
+
