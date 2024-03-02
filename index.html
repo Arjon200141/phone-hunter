@@ -20,12 +20,34 @@
         </section>
         <!--Search Result-->
         <section class="my-8">
+            <!--Loader-->
+            <div id="spin-loader" class="text-center hidden my-60">
+                <span class="loading loading-dots text-primary loading-lg"></span>
+            </div>
             <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             </div>
-            <div id="show-all-container" class="flex justify-center my-6 p-2 hidden">
-                <button class="btn btn-accent">Show All</button>
+            <div id="show-all-container" class="text-center my-6 p-2 hidden">
+                <button onclick="ShowAll()" class="btn btn-accent">Show All</button>
             </div>
         </section>
+
+        <!--Show Details Modal-->
+        <!-- Open the modal using ID.showModal() method -->
+            <button class="btn hidden" onclick="modal_details_show.showModal()">open modal</button>
+            <dialog id="modal_details_show" class="modal modal-bottom sm:modal-middle ">
+            <div class="modal-box ">
+           
+            <div id="show-details-container">
+
+            </div>
+            <div class="modal-action">
+            <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+            </form>
+            </div>
+            </div>
+            </dialog>
     </main>
     <footer>
 
